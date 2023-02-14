@@ -1,0 +1,17 @@
+info:
+  version: 1.0.0
+  description: NRF initial local configuration
+configuration:
+  mongoDBStreamEnable: true
+  nfProfileExpiryEnable: true
+  nfKeepAliveTime: 60
+  sbi:
+    scheme: http
+    bindingIPv4: "0.0.0.0"
+    registerIPv4: nrf
+  DefaultPlmnId:
+    mcc: "208"
+    mnc: "93"
+  serviceNameList:
+    - nnrf-nfm
+    - nnrf-disc
