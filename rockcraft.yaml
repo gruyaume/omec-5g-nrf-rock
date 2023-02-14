@@ -1,0 +1,30 @@
+name: omec-5g-nrf
+summary: OMEC SD-CORE 5G NRF
+description: OMEC SD-CORE 5G NRF
+version: "1.0.1"
+license: Apache-2.0
+base: bare
+build-base: ubuntu:22.04
+platforms:
+  amd64:
+
+cmd: ["nrf", "--nrfcfg", "/etc/nrfcfg.yaml"]
+
+parts:
+  nrf:
+    plugin: go
+    source: https://github.com/omec-project/nrf.git
+    source-type: git
+    source-tag: v1.0.1
+    build-snaps:
+      - go
+    stage-packages:
+      - bash  # Required because of this bug: https://github.com/canonical/rockcraft/issues/187
+    organize:
+      bin/cmd: bin/nrf
+
+  config:
+    plugin: dump
+    source: files
+    organize:
+      nrfcfg.yaml: etc/nrfcfg.yaml
